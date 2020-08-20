@@ -15,7 +15,7 @@ public interface UserService {
 
     public User disableUser(int userId) throws Exception;
 
-    public User enableUser(int user) throws Exception;
+    public User enableUser(int userId) throws Exception;
 
     public List<Role> getRole(String token) throws Exception;
 

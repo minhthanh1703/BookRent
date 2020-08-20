@@ -156,7 +156,9 @@ public class UserServiceImp implements UserService {
 
         } finally {
             logger.info(Constant.END_SERVICE + "getRole");
+            return null;
         }
+
     }
 
     @Override

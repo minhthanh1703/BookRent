@@ -10,8 +10,13 @@ public class Constant {
     public static final String AUTH = "/auth";
     public static final String DISABLE="/disable";
     public static final String ENABLE="/enable";
+    //book
+    public static final String BOOK = "/book";
 
-
+    //role
+    public static final String ROLE = "/role";
+    //category
+    public static final String CATEGORY = "/category";
 
     //Service
     public static final String BEGIN_SERVICE = "Begin service :";
