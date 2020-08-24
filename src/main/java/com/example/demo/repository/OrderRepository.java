@@ -1,4 +1,14 @@
 package com.example.demo.repository;
 
-public interface OrderRepository {
+import com.example.demo.entities.Order;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface OrderRepository extends JpaRepository<Order, Integer> {
+
+      List<Order> getOrderByUserId(int userId);
+
+      List<Order> getOrderByUserIdAndStatusActiveOrderByCreateAtDesc(int userId, boolean status);
+
 }

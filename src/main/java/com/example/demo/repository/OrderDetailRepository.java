@@ -1,4 +1,12 @@
 package com.example.demo.repository;
 
-public interface OrderDetailRepository {
+import com.example.demo.entities.OrderDetails;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface OrderDetailRepository extends JpaRepository<OrderDetails, Integer> {
+
+    List<OrderDetails> getAllByOrderId(int orderId);
+
 }

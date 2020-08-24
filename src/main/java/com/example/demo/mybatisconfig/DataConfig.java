@@ -1,9 +1,10 @@
-package group3.xavalocoffee.mybatisconfig;
+package com.example.demo.mybatisconfig;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -20,7 +21,7 @@ public class DataConfig {
     public SqlSessionFactory sqlSessionFactoryBean(){
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage("group3.xavalocoffee.entities");
+        bean.setTypeAliasesPackage("com.example.demo.entities");
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         try {
             bean.setMapperLocations(resolver.getResources("classpath:/mybatis/*.xml"));

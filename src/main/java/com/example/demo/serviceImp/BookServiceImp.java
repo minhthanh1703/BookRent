@@ -10,6 +10,9 @@ import com.example.demo.repository.CategoryRepository;
 import com.example.demo.service.BookService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -34,6 +37,18 @@ public class BookServiceImp implements BookService {
             List<Book> bookList = new ArrayList<>();
             bookList = bookRepository.findAll();
             return bookList;
+        }finally {
+            logger.info(Constant.END_SERVICE + "getAllBooks");
+        }
+    }
+
+    @Override
+    public Page<Book> getAllBooks(int page, int size) throws Exception{
+        logger.info(Constant.BEGIN_SERVICE + "getAllBooks");
+        try{
+            Pageable pageable = PageRequest.of(page, size);
+            Page<Book> bookPage = bookRepository.findAll(pageable);
+            return bookPage;
         }finally {
             logger.info(Constant.END_SERVICE + "getAllBooks");
         }

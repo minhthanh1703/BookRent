@@ -1,4 +1,4 @@
-package group3.xavalocoffee.mybatisconfig;
+package com.example.demo.mybatisconfig;
 
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -13,7 +13,7 @@ public class MyBatisMapperScannerConfig {
     public MapperScannerConfigurer mapperScannerConfigurer(){
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        mapperScannerConfigurer.setBasePackage("group3.xavalocoffee.mybatisrepository");
+        mapperScannerConfigurer.setBasePackage("com.example.demo.mapper");
         return mapperScannerConfigurer;
     }
 }
