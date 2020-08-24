@@ -17,4 +17,10 @@ public class Message {
 
     public static final String CATEGORY_NOT_EXIST = "Category is not exist";
 
+    public static final String USER_NOT_VALID = "User not valid";
+
+    public static final String LIST_ORDER_NOT_VALID = "List order not valid";
+
+    public static final String BOOK_OUT_OF_STOCK = "Book out of stock";
+
 }

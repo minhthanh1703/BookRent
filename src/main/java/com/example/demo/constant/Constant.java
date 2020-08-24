@@ -17,6 +17,8 @@ public class Constant {
     public static final String ROLE = "/role";
     //category
     public static final String CATEGORY = "/category";
+    //order
+    public static final String ORDER = "/order";
 
     //Service
     public static final String BEGIN_SERVICE = "Begin service :";

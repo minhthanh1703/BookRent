@@ -6,6 +6,7 @@ import com.example.demo.entities.Book;
 import com.example.demo.service.BookService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,25 @@ public class BookController {
             logger.info(Constant.END_CONTROLLER + "findAllBook");
         }
     }
+
+    @GetMapping(Constant.BOOK +"/page")
+    public ResponseEntity findAllBook(@RequestParam int page, @RequestParam int size){
+        logger.info(Constant.BEGIN_CONTROLLER + "findAllBook");
+        ServiceResponseDTO response = new ServiceResponseDTO();
+        try{
+            Page<Book> listBook = bookService.getAllBooks(page, size);
+            response.setData(listBook);
+            return new ResponseEntity(response, HttpStatus.OK);
+        } catch (Exception e) {
+            logger.error(e);
+            response.setMessage(e.getMessage());
+            response.setStatus(ServiceResponseDTO.Status.FAILED);
+            return new ResponseEntity(response,HttpStatus.BAD_REQUEST);
+        }finally {
+            logger.info(Constant.END_CONTROLLER + "findAllBook");
+        }
+    }
+
 
     @PostMapping(Constant.BOOK)
     public ResponseEntity createBook(@RequestBody Book book){

@@ -5,6 +5,7 @@ import com.example.demo.constant.Message;
 import com.example.demo.entities.Role;
 import com.example.demo.entities.User;
 import com.example.demo.entities.UserRole;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.UserRoleRepository;
@@ -17,9 +18,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -37,6 +36,9 @@ public class UserServiceImp implements UserService {
 
     @Autowired
     UserRoleRepository userRoleRepository;
+
+    @Autowired
+    UserMapper userMapper;
 
     @Override
     public List<User> getAllUser() throws Exception {
@@ -152,13 +154,21 @@ public class UserServiceImp implements UserService {
     @Override
     public List<Role> getRole(String token) throws Exception {
         logger.info(Constant.BEGIN_SERVICE + "getRole");
+        List<Role> listRole = null;
         try {
-
+            User user = userRepository.findByUsername(JWTVerifier.USERNAME);
+            if (user == null) {
+                throw new Exception(Message.ACCOUNT_NOT_EXIST);
+            }
+            Map parameter = new HashMap();
+            parameter.put("id", user.getId());
+            listRole = userMapper.getRoleByUser(parameter);
+        } catch (Exception e){
+            e.printStackTrace();
         } finally {
             logger.info(Constant.END_SERVICE + "getRole");
-            return null;
         }
-
+            return listRole;
     }
 
     @Override
